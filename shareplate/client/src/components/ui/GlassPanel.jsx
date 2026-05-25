@@ -8,7 +8,7 @@ export default function GlassPanel({ children, className = '', style }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 6 }}
       transition={{ duration: 0.45, ease: 'easeOut' }}
-      className={`glass-dark border border-gray-700/30 ${className}`}
+      className={`glass-dark border border-gray-700/[0.30] ${className}`}
       style={style}
     >
       {children}

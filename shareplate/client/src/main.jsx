@@ -5,11 +5,13 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
 import App from './App';
 import './index.css';
+import CustomCursor from '@/components/ui/CustomCursor';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
+        <CustomCursor />
         <App />
         <Toaster
           position="top-right"

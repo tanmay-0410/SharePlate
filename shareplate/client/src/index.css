@@ -13,10 +13,11 @@
 
 @layer components {
   .glass {
-    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
+    @apply bg-white/[0.60] backdrop-blur-lg border border-white/[0.20] shadow-xl;
   }
   .glass-dark {
-    @apply bg-gray-900/70 backdrop-blur-lg border border-gray-700/30 shadow-xl;
+    /* slightly lighter and warmer for form panels */
+    @apply bg-gray-800/[0.60] backdrop-blur-md border border-gray-700/[0.20] shadow-lg;
   }
   .gradient-green {
     @apply bg-gradient-to-r from-brand-500 to-brand-700;
@@ -25,15 +26,15 @@
     @apply bg-gradient-to-r from-brand-400 to-brand-600 bg-clip-text text-transparent;
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-white
-           bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700
-           transition-all duration-200 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40
-           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+      @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-semibold text-white
+        bg-premium-500 hover:bg-premium-600
+        transition-all duration-200 shadow-md shadow-black/[0.20] hover:shadow-black/[0.25]
+        active:scale-[0.985] disabled:opacity-50 disabled:cursor-not-allowed;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold
-           bg-white border-2 border-gray-200 text-gray-700 hover:border-brand-500 hover:text-brand-600
-           transition-all duration-200 active:scale-[0.98];
+      @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-semibold
+      bg-white/[0.06] border border-white/[0.10] text-white/[0.90] hover:bg-white/[0.10]
+        transition-all duration-200 active:scale-[0.985];
   }
   .btn-outline {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold
@@ -47,9 +48,13 @@
     @apply card hover:-translate-y-1 hover:shadow-lg transition-all duration-300;
   }
   .input-field {
-    @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50
-           focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none
-           transition-all duration-200 placeholder:text-gray-400;
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 bg-white/[0.08] text-current
+           focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/[0.20] focus:outline-none
+           transition-all duration-200 placeholder:text-gray-400 backdrop-blur-xs;
+  }
+
+  .form-panel {
+    @apply bg-gray-800/[0.50] border border-gray-700/[0.20] rounded-2xl p-6 shadow-xl;
   }
   .skeleton {
     @apply animate-pulse bg-gray-200 rounded-lg;
@@ -75,6 +80,74 @@
   .blob-anim {
     animation: blob-move 12s ease-in-out infinite;
   }
+}
+
+/* Custom cursor */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    pointer-events: none;
+    transform: translate3d(var(--cx, -9999px), var(--cy, -9999px), 0) translate3d(-7px, -7px, 0) scale(1);
+    transition: transform 120ms linear, width 120ms ease, height 120ms ease, background-color 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(6,95,70,0.22);
+    background: linear-gradient(135deg, #10B981, #059669);
+    mix-blend-mode: normal;
+    transform-origin: center;
+    will-change: transform;
+    opacity: 1;
+    border: 2px solid rgba(255,255,255,0.06);
+  }
+
+  .custom-cursor--hover {
+    width: 30px;
+    height: 30px;
+    transform: translate3d(var(--cx, -9999px), var(--cy, -9999px), 0) translate3d(-15px, -15px, 0) scale(1);
+    background: linear-gradient(135deg, rgba(16,185,129,0.95), rgba(5,150,105,0.95));
+    box-shadow: 0 8px 24px rgba(5,150,105,0.18);
+    border: 2px solid rgba(255,255,255,0.14);
+  }
+
+  .custom-cursor-follower {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    pointer-events: none;
+    transform: translate3d(var(--fx, -9999px), var(--fy, -9999px), 0) translate3d(-17px, -17px, 0) scale(1);
+    transition: transform 160ms linear, opacity 200ms ease;
+    z-index: 9998;
+    background: radial-gradient(circle at 30% 30%, rgba(16,185,129,0.22), rgba(5,150,105,0.10));
+    box-shadow: 0 10px 30px rgba(5,150,105,0.10);
+    opacity: 0.95;
+    will-change: transform, opacity;
+  }
+
+  .custom-cursor-follower.custom-cursor--hover {
+    transform: translate3d(var(--fx, -9999px), var(--fy, -9999px), 0) translate3d(-20px, -20px, 0) scale(1.25);
+    box-shadow: 0 14px 40px rgba(5,150,105,0.16);
+    opacity: 1;
+    animation: cursor-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes cursor-pulse {
+    0% { transform: translate3d(var(--fx, -9999px), var(--fy, -9999px), 0) translate3d(-20px, -20px, 0) scale(1.0); }
+    50% { transform: translate3d(var(--fx, -9999px), var(--fy, -9999px), 0) translate3d(-20px, -20px, 0) scale(1.12); }
+    100% { transform: translate3d(var(--fx, -9999px), var(--fy, -9999px), 0) translate3d(-20px, -20px, 0) scale(1.0); }
+  }
+}
+
+@media (hover: none) {
+  .custom-cursor { display: none; }
 }
 
 html {

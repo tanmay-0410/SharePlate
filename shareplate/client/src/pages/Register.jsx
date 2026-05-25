@@ -120,8 +120,8 @@ export default function Register() {
     // Validate certificates for restaurants
     if (form.role === 'restaurant' && !form.certificates.fssai) {
       toast.error('Please upload your FSSAI certificate');
-      readdress: form.address,
-        turn;
+      setLoading(false);
+      return;
     }
 
     setLoading(true);
@@ -132,12 +132,15 @@ export default function Register() {
         password: form.password,
         phone: form.phone,
         role: form.role,
+        address: form.address,
         certificates: form.role === 'restaurant' ? form.certificates : undefined,
       };
       await register(registrationData);
       navigate('/dashboard');
-    } catch {
+    } catch (err) {
       setLoading(false);
+      // Server error message is already shown by api interceptor; keep client-side minimal
+      console.error('Registration error:', err?.response?.data || err.message || err);
     }
   };
 

@@ -55,7 +55,7 @@ export default function NGODashboard() {
         </div>
         <div className="grid md:grid-cols-2 gap-4">
           {donations.map((d) => (
-            <Link key={d._id} to={`/donations/${d._id}`} className="flex items-center justify-between p-4 rounded-xl border hover:border-brand-200 hover:bg-brand-50/50 transition-colors">
+            <Link key={d._id} to={`/donations/${d._id}`} className="flex items-center justify-between p-4 rounded-xl border hover:border-brand-200 hover:bg-brand-50/[0.50] transition-colors">
               <div>
                 <p className="font-medium">{d.foodName}</p>
                 <p className="text-sm text-gray-500 flex items-center gap-1"><MapPin className="w-3 h-3" /> {d.pickupLocation?.address?.slice(0, 30)}</p>

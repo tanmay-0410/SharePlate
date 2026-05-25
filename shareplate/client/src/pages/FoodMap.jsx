@@ -10,6 +10,8 @@ import ErrorState from "../components/ui/ErrorState";
 import ConfirmationModal from "../components/ui/ConfirmationModal";
 import { fetchNearbyNGOs } from "../services/ngoService";
 import { haversineDistance } from "../lib/distanceCalculator";
+import GlassPanel from "../components/ui/GlassPanel";
+import { motion } from "framer-motion";
 
 export default function FoodMap() {
   const [userLocation, setUserLocation] = useState(null);
@@ -118,13 +120,14 @@ export default function FoodMap() {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">Food Map — Nearby NGO Finder</h2>
+    <div className="container mx-auto p-6">
+      <motion.h2 className="text-2xl font-semibold mb-4 text-white">Food Map — Nearby NGO Finder</motion.h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* demo banner removed per user request */}
         <div className="lg:col-span-2">
-          <DonationForm onLocation={({ lat, lon }) => setUserLocation({ lat, lon })} onSubmit={handleDonationSubmit} userLocation={userLocation} />
+          <GlassPanel className="p-4">
+            <DonationForm onLocation={({ lat, lon }) => setUserLocation({ lat, lon })} onSubmit={handleDonationSubmit} userLocation={userLocation} />
+          </GlassPanel>
 
           <div className="mt-6">
             {loading ? (
@@ -133,14 +136,18 @@ export default function FoodMap() {
               <ErrorState message={error} onRetry={() => userLocation && loadNGOs(userLocation.lat, userLocation.lon)} />
             ) : (
               <>
-                <NGOMap userLocation={userLocation ? [userLocation.lat, userLocation.lon] : null} ngos={filtered} selectedNGO={selectedNGO} />
+                <GlassPanel className="overflow-hidden p-2 mb-3">
+                  <NGOMap userLocation={userLocation ? [userLocation.lat, userLocation.lon] : null} ngos={filtered} selectedNGO={selectedNGO} />
+                </GlassPanel>
+
                 <div className="flex items-center justify-between mb-3">
-                  <div className="text-sm text-gray-600">Found {filtered.length} NGOs within 5km</div>
+                  <div className="text-sm text-gray-300">Found {filtered.length} NGOs within 5km</div>
                   <NGOFilterChips selected={selectedFilter} onChange={(v) => handleFilterChange(v)} />
                 </div>
+
                 <div>
                   {filtered.length === 0 ? (
-                    <div className="p-6 bg-white/60 rounded-xl">No nearby NGOs found. Try expanding your location or radius.</div>
+                    <div className="p-6 bg-white/[0.06] rounded-xl">No nearby NGOs found. Try expanding your location or radius.</div>
                   ) : (
                     filtered.map((ngo) => (
                       <NGOCard key={ngo.id} ngo={ngo} distance={ngo.distance} onSelect={handleSelectNGO} selected={selectedNGO && selectedNGO.id === ngo.id} />
@@ -152,33 +159,33 @@ export default function FoodMap() {
           </div>
         </div>
 
-        <aside className="lg:col-span-1">
-          <div className="bg-white/60 backdrop-blur rounded-xl p-4 shadow-md">
-            <h4 className="font-semibold mb-2">Selection</h4>
+        <aside className="lg:col-span-1 space-y-4">
+          <GlassPanel className="p-4">
+            <h4 className="font-semibold mb-2 text-white">Selection</h4>
             {selectedNGO ? (
               <div>
-                <div className="font-bold">{selectedNGO.tags?.name}</div>
-                <div className="text-xs text-gray-600 mb-2">{selectedNGO.tags?.['addr:full'] || selectedNGO.tags?.['addr:street']}</div>
-                <button onClick={() => setModalOpen(true)} className="px-3 py-2 bg-blue-500 text-white rounded-lg">View & Confirm</button>
+                <div className="font-bold text-white">{selectedNGO.tags?.name}</div>
+                <div className="text-xs text-gray-300 mb-2">{selectedNGO.tags?.['addr:full'] || selectedNGO.tags?.['addr:street']}</div>
+                <button onClick={() => setModalOpen(true)} className="px-3 py-2 bg-gradient-to-r from-premium-600 to-cyan-500 text-white rounded-lg">View & Confirm</button>
               </div>
             ) : (
-              <div className="text-sm text-gray-600">Select an NGO from the list to prepare a donation.</div>
+              <div className="text-sm text-gray-300">Select an NGO from the list to prepare a donation.</div>
             )}
 
-            <div className="mt-4 text-sm text-gray-500">
+            <div className="mt-4 text-sm text-gray-400">
               <div className="mb-2">AI Recommendation: (coming soon)</div>
               <div className="text-xs">We'll analyze donation details to recommend the best NGO.</div>
             </div>
-          </div>
+          </GlassPanel>
 
-          <div className="mt-4 bg-white/60 backdrop-blur rounded-xl p-4 shadow-md">
-            <h4 className="font-semibold mb-2">Tips</h4>
-            <ul className="text-sm text-gray-600 list-disc ml-5">
+          <GlassPanel className="p-4">
+            <h4 className="font-semibold mb-2 text-white">Tips</h4>
+            <ul className="text-sm text-gray-300 list-disc ml-5">
               <li>Provide accurate pickup address for smooth collection.</li>
               <li>Pack food safely and label perishable items.</li>
               <li>Use "Use my location" for best matchmaking.</li>
             </ul>
-          </div>
+          </GlassPanel>
         </aside>
       </div>
 

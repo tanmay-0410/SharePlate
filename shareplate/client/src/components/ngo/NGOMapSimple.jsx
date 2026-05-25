@@ -83,7 +83,7 @@ export default function NGOMapSimple({ userLocation, ngos = [], selectedNGO }) {
   }, [userLocation, ngos, selectedNGO]);
 
   return (
-    <div className="w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-lg mb-6">
+    <div className="w-full h-80 md:h-[520px] rounded-2xl overflow-hidden shadow-2xl mb-6 border border-gray-700/[0.20]">
       <div id="ngo-map" className="w-full h-full" />
     </div>
   );

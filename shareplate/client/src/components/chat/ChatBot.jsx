@@ -42,7 +42,7 @@ export default function ChatBot() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full gradient-green text-white shadow-lg shadow-brand-500/30 hover:shadow-xl hover:scale-105 transition-all z-50 flex items-center justify-center"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full gradient-green text-white shadow-lg shadow-brand-500/[0.30] hover:shadow-xl hover:scale-105 transition-all z-50 flex items-center justify-center"
       >
         <MessageCircle className="w-6 h-6" />
       </button>
@@ -60,7 +60,7 @@ export default function ChatBot() {
                 <Bot className="w-5 h-5" />
                 <span className="font-semibold">SharePlate AI</span>
               </div>
-              <button onClick={() => setOpen(false)} className="p-1 hover:bg-white/20 rounded-lg transition-colors">
+              <button onClick={() => setOpen(false)} className="p-1 hover:bg-white/[0.20] rounded-lg transition-colors">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -112,7 +112,7 @@ export default function ChatBot() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
                   placeholder="Ask anything..."
-                  className="flex-1 px-4 py-2 rounded-xl border text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none"
+                  className="flex-1 px-4 py-2 rounded-xl border text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500/[0.20] focus:outline-none"
                 />
                 <button onClick={() => sendMessage()} className="p-2 rounded-xl bg-brand-500 text-white hover:bg-brand-600 transition-colors">
                   <Send className="w-4 h-4" />

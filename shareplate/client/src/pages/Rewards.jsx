@@ -59,8 +59,8 @@ export default function Rewards() {
 
       {tab === 'badges' && (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {badges.map((badge) => (
-            <div key={badge.name} className={cn('card p-6 text-center transition-all', badge.earned ? 'border-brand-200 bg-brand-50/50' : 'opacity-50')}>
+            {badges.map((badge) => (
+            <div key={badge.name} className={cn('card p-6 text-center transition-all', badge.earned ? 'border-brand-200 bg-brand-50/[0.50]' : 'opacity-50')}>
               <span className="text-5xl block mb-3">{BADGE_ICONS[badge.name] || '🏅'}</span>
               <h3 className="font-semibold">{badge.name}</h3>
               <p className="text-xs text-gray-500 mt-1">{badge.earned ? 'Earned!' : `${Math.round(badge.progress * 100)}% complete`}</p>

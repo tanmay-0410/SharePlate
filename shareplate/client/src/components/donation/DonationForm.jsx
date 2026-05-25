@@ -62,11 +62,11 @@ export default function DonationForm({ onLocation, onSubmit, userLocation }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white/60 backdrop-blur rounded-xl p-6 shadow-md">
+    <form onSubmit={handleSubmit} className="form-panel">
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1">
-          <label className="text-sm font-medium text-gray-700">Food type</label>
-          <select name="foodType" value={form.foodType} onChange={handleChange} className="mt-1 w-full rounded-lg p-2 border">
+          <label className="text-sm font-medium text-white">Food type</label>
+          <select name="foodType" value={form.foodType} onChange={handleChange} className="mt-1 w-full input-field">
             <option>Cooked Food</option>
             <option>Packaged Food</option>
             <option>Fruits & Vegetables</option>
@@ -75,30 +75,30 @@ export default function DonationForm({ onLocation, onSubmit, userLocation }) {
           </select>
         </div>
         <div className="w-32">
-          <label className="text-sm font-medium text-gray-700">Quantity</label>
-          <input name="quantity" value={form.quantity} onChange={handleChange} className="mt-1 w-full rounded-lg p-2 border" />
+          <label className="text-sm font-medium text-white">Quantity</label>
+          <input name="quantity" value={form.quantity} onChange={handleChange} className="mt-1 w-full input-field" />
         </div>
       </div>
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="text-sm font-medium text-gray-700">Donor name</label>
-          <input name="donorName" value={form.donorName} onChange={handleChange} className="mt-1 w-full rounded-lg p-2 border" />
+          <label className="text-sm font-medium text-white">Donor name</label>
+          <input name="donorName" value={form.donorName} onChange={handleChange} className="mt-1 w-full input-field" />
         </div>
         <div>
-          <label className="text-sm font-medium text-gray-700">Phone number</label>
-          <input name="phone" value={form.phone} onChange={handleChange} className="mt-1 w-full rounded-lg p-2 border" />
+          <label className="text-sm font-medium text-white">Phone number</label>
+          <input name="phone" value={form.phone} onChange={handleChange} className="mt-1 w-full input-field" />
         </div>
       </div>
 
       <div className="mt-4">
-        <label className="text-sm font-medium text-gray-700">Pickup address</label>
-        <input name="pickupAddress" value={form.pickupAddress} onChange={handleChange} className="mt-1 w-full rounded-lg p-2 border" placeholder="Street, landmark, city" />
+        <label className="text-sm font-medium text-white">Pickup address</label>
+        <input name="pickupAddress" value={form.pickupAddress} onChange={handleChange} className="mt-1 w-full input-field" placeholder="Street, landmark, city" />
       </div>
 
       <div className="mt-4">
-        <label className="text-sm font-medium text-gray-700">Notes (optional)</label>
-        <textarea name="notes" value={form.notes} onChange={handleChange} className="mt-1 w-full rounded-lg p-2 border" rows={3} />
+        <label className="text-sm font-medium text-white">Notes (optional)</label>
+        <textarea name="notes" value={form.notes} onChange={handleChange} className="mt-1 w-full input-field" rows={3} />
       </div>
 
       <div className="mt-4 flex items-center justify-between">
@@ -106,11 +106,11 @@ export default function DonationForm({ onLocation, onSubmit, userLocation }) {
           {loadingLocation ? (
             <span>Fetching location...</span>
           ) : locationError ? (
-            <span className="text-red-500">{locationError}</span>
+            <span className="text-red-400">{locationError}</span>
           ) : form.lat && form.lon ? (
-            <span>Location captured • {(form.lat).toFixed(4)}, {(form.lon).toFixed(4)}</span>
+            <span className="text-white">Location captured • {(form.lat).toFixed(4)}, {(form.lon).toFixed(4)}</span>
           ) : (
-            <span>Location not available</span>
+            <span className="text-white/[0.70]">Location not available</span>
           )}
         </div>
         <div className="flex items-center gap-2">
@@ -130,9 +130,9 @@ export default function DonationForm({ onLocation, onSubmit, userLocation }) {
                 setLoadingLocation(false);
               });
             }
-          }} className="px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">Use my location</button>
+          }} className="btn-secondary">Use my location</button>
 
-          <button type="submit" className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition">Find NGOs</button>
+          <button type="submit" className="btn-primary">Find NGOs</button>
         </div>
       </div>
     </form>

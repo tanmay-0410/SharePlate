@@ -1,6 +1,9 @@
 // src/components/ngo/NGOCard.jsx
 import React from "react";
 import { getDisplayName, getAddress, normalizeWebsite } from "../../lib/ngoUtils";
+import GlassPanel from "../ui/GlassPanel";
+import Button from "../ui/Button";
+import { motion } from "framer-motion";
 
 export default function NGOCard({ ngo, distance, onSelect, selected }) {
   const name = getDisplayName(ngo) || "Unnamed NGO";
@@ -8,43 +11,42 @@ export default function NGOCard({ ngo, distance, onSelect, selected }) {
   const website = normalizeWebsite(ngo.tags?.website || ngo.tags?.url);
 
   return (
-    <div
-      className={`bg-white/70 backdrop-blur shadow-lg rounded-xl p-5 mb-4 transition border hover:shadow-xl hover:-translate-y-1 ${
-        selected ? "ring-2 ring-blue-500" : ""
-      }`}
-    >
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-        <div>
-          <div className="font-bold text-lg text-gray-800 mb-1 flex items-center gap-2">
-            {name}
-            {website && (
-              <a
-                href={website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-2 text-blue-500 underline text-sm"
-              >
-                Website
-              </a>
+    <motion.div whileHover={{ y: -6 }} className="mb-4">
+      <GlassPanel className={`p-4 ${selected ? 'ring-2 ring-cyan-400' : ''}`}>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div className="flex-1">
+            <div className="flex items-start gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-premium-500 to-cyan-400 flex items-center justify-center text-white font-semibold shadow-md">
+                NGO
+              </div>
+              <div className="min-w-0">
+                <div className="font-semibold text-base text-white truncate flex items-center gap-2">
+                  {name}
+                  {website && (
+                    <a href={website} target="_blank" rel="noopener noreferrer" className="text-cyan-200 text-xs underline">
+                      Site
+                    </a>
+                  )}
+                </div>
+                <div className="text-sm text-gray-300 truncate">{address}</div>
+                <div className="text-xs text-gray-400 mt-1">{ngo.tags?.['office'] || ngo.tags?.['amenity'] || 'NGO'}</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            {distance !== undefined && (
+              <div className="px-3 py-1 rounded-full bg-white/[0.06] text-sm text-white/[0.90] font-medium">
+                {(distance / 1000).toFixed(2)} km
+              </div>
             )}
-          </div>
-          <div className="text-gray-600 text-sm mb-1">{address}</div>
-          <div className="text-xs text-gray-500 mb-1">
-            {ngo.tags?.['office'] || ngo.tags?.['amenity'] || "NGO"}
-          </div>
-          <div className="text-xs text-gray-500">
-            {distance !== undefined && <span>{(distance / 1000).toFixed(2)} km away</span>}
+
+            <Button variant={selected ? 'secondary' : 'primary'} size="sm" onClick={() => onSelect(ngo)}>
+              {selected ? 'Selected' : 'Select'}
+            </Button>
           </div>
         </div>
-        <button
-          className={`px-4 py-2 rounded-lg font-semibold shadow bg-blue-500 text-white hover:bg-blue-600 transition ${
-            selected ? "ring-2 ring-blue-400" : ""
-          }`}
-          onClick={() => onSelect(ngo)}
-        >
-          {selected ? "Selected" : "Select NGO"}
-        </button>
-      </div>
-    </div>
+      </GlassPanel>
+    </motion.div>
   );
 }
