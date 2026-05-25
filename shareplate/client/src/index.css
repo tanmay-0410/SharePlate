@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+  .glass-dark {
+    @apply bg-gray-900/70 backdrop-blur-lg border border-gray-700/30 shadow-xl;
+  }
+  .gradient-green {
+    @apply bg-gradient-to-r from-brand-500 to-brand-700;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 to-brand-600 bg-clip-text text-transparent;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-white
+           bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700
+           transition-all duration-200 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold
+           bg-white border-2 border-gray-200 text-gray-700 hover:border-brand-500 hover:text-brand-600
+           transition-all duration-200 active:scale-[0.98];
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold
+           border-2 border-brand-500 text-brand-600 hover:bg-brand-50
+           transition-all duration-200 active:scale-[0.98];
+  }
+  .card {
+    @apply rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+  .card-hover {
+    @apply card hover:-translate-y-1 hover:shadow-lg transition-all duration-300;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50
+           focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none
+           transition-all duration-200 placeholder:text-gray-400;
+  }
+  .skeleton {
+    @apply animate-pulse bg-gray-200 rounded-lg;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
