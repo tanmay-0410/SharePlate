@@ -117,6 +117,15 @@ export default function App() {
           </ProtectedRoute>
         }
       />
+      {/* Development-only route to view the Food Map without authentication */}
+      <Route
+        path="/map-dev"
+        element={
+          <Layout>
+            <Map />
+          </Layout>
+        }
+      />
       <Route
         path="/admin"
         element={

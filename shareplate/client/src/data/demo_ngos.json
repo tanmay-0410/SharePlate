@@ -1,0 +1,42 @@
+[
+  {
+    "type": "node",
+    "id": 9000001,
+    "lat": 28.4449,
+    "lon": 77.5289,
+    "tags": {
+      "name": "Alambagh Community Kitchen",
+      "office": "ngo",
+      "website": "https://alambagh-kitchen.example.org",
+      "addr:street": "Alambagh Main Road",
+      "addr:city": "Lucknow"
+    }
+  },
+  {
+    "type": "node",
+    "id": 9000002,
+    "lat": 28.4465,
+    "lon": 77.5320,
+    "tags": {
+      "name": "Hope & Care Foundation",
+      "amenity": "social_facility",
+      "social_facility": "shelter",
+      "website": "https://hopecare.example.org",
+      "addr:street": "Station Road",
+      "addr:city": "Lucknow"
+    }
+  },
+  {
+    "type": "node",
+    "id": 9000003,
+    "lat": 28.4412,
+    "lon": 77.5315,
+    "tags": {
+      "name": "Children First NGO",
+      "office": "ngo",
+      "website": "https://childrenfirst.example.org",
+      "addr:street": "Market Street",
+      "addr:city": "Lucknow"
+    }
+  }
+]

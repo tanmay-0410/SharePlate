@@ -1,0 +1,46 @@
+[
+  {
+    "type": "node",
+    "id": 5522032221,
+    "lat": 28.6418902,
+    "lon": 77.2152603,
+    "tags": {
+      "addr:city": "New Delhi",
+      "addr:housenumber": "2nd Floor DDA Community Centre",
+      "addr:postcode": "110055",
+      "addr:street": "Gali Chandi Wali",
+      "name": "Salaam Baalak Trust Office",
+      "office": "ngo",
+      "website": "https://www.salaambaalaktrust.com/"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6362609788,
+    "lat": 28.6666503,
+    "lon": 77.2353709,
+    "tags": {
+      "amenity": "social_facility",
+      "social_facility": "shelter"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12135560011,
+    "lat": 28.6464173,
+    "lon": 77.1880449,
+    "tags": {
+      "addr:floor": "0",
+      "addr:housenumber": "15A/30",
+      "addr:street": "Saraswati Marg",
+      "addr:unit": "WEA",
+      "check_date": "2024-08-25",
+      "email": "rkashramkutir@gmail.com",
+      "level": "0",
+      "name": "Ramakrishna Ashram Kutir",
+      "office": "ngo",
+      "phone": "+91 72919 20747; +91 77018 61543; +91 98114 17580",
+      "religion": "hindu"
+    }
+  }
+]
